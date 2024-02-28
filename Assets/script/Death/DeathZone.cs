@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision){
-        if (collision.CompareTag("Player")){
-            collision.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+    private Transform playerSpawn;
+
+    private void Awake(){
+        playerSpawn = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+    void OnTriggerEnter2D(Collider2D col){
+        if (col.gameObject.tag == "Player"){
+            col.transform.position = playerSpawn.position;
         }
     }
 }
